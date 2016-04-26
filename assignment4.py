@@ -1,4 +1,5 @@
 import math 
+import unittest
 
 
 
@@ -236,5 +237,19 @@ def verfiyString(string):
 
 
 # 	print(testem3)
-	
 
+
+#running test	
+class MyTest(unittest.TestCase):
+    def test1(self):
+        self.assertEqual(convertFeetToInches(1), 12)
+    def test2(self):
+        self.assertEqual(convertFeetToInches(1.0), 12)
+    def test3(self):
+        self.assertEqual(convertFeetToInches(1), 12.0)
+    def test4(self):
+        self.assertEqual(convertFeetToInches(1.1), 12.0)
+
+if __name__ =='__main__':
+    unittest.main(exit=False)
+    
