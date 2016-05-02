@@ -4,203 +4,182 @@ import sys
 
 
 # converts the feet to inches
-def convertFeetToInches(heightFeet):
-    newHeightToInches = heightFeet * 12  # convert feet to inches
-    return newHeightToInches
+def convert_feet_to_inches(height_in_feet):
+    inches_returned = height_in_feet * 12
+    return inches_returned
 
 
-# converts the inches to
-def completeHeightToInches(feet, inches):  # convert entire height to
-    fullConvert = feet + inches
-
-    return fullConvert
+def complete_height_to_inches(feet, inches):
+    full_convert = feet + inches
+    return full_convert
 
 
-def convertHeightToMetric(height):
-    metricHeight = (height * 0.025)  # convert height to metric
-
-    return metricHeight
-
-
-def convertWeightToMetric(weight):  # convert weight to metric
-    metricWeight = (weight * 0.45)
-
-    return metricWeight
+def convert_height_to_metric(height):
+    metric_height = (height * 0.025)  # convert height to metric
+    return metric_height
 
 
-def squareMetricHeight(height):  #square height
-    squaredResult = (height * height)
+def convert_weight_to_metric(weight):  # convert weight to metric
+    metric_weight = (weight * 0.45)
+    return metric_weight
 
-    return squaredResult
+
+def square_metric_height(height):  # square height
+    squared_result = (height * height)
+    return squared_result
 
 
-def getBmiNumber(weight, heightSquared):
-
-    finalBMI = (weight/ heightSquared)
-
-    return finalBMI
+def get_bmi_number(weight, height_squared):
+    final_bmi = (weight / height_squared)
+    return final_bmi
 
 
 # main function to give BMI result
-def tellBMI(heightInFeet, heightInInches, weight):
+def tell_bmi(height_in_feet, height_in_inches, weight):
+    """
+    I don't know why this is here. Not used.
 
-    newHeightFeet = convertFeetToInches(heightInFeet)
-    newHeight = completeHeightToInches(newHeightFeet, heightInInches)
-    metricHeight = convertHeightToMetric(newHeight)
+    new_height_feet = convert_feet_to_inches(height_in_feet)
+    new_height = complete_height_to_inches(new_height_feet, height_in_inches)
+    metric_height = convert_height_to_metric(new_height)
 
-    convertedHeight = squareMetricHeight(metricHeight)
+    converted_height = square_metric_height(metric_height)
+    """
 
-    covertedWeight = convertWeightToMetric(weight)
+    converted_height = convert_weight_to_metric(weight)
 
-    newBMI = getBmiNumber(covertedWeight, convertedHeight)
+    new_bmi = get_bmi_number(converted_height, converted_height)
 
-    if newBMI >= 30:
+    if new_bmi >= 30:
         statement = "Obese"
 
-    if 25 <= newBMI < 30:
+    if 25 <= new_bmi < 30:
         statement = "Overweight"
 
-    if 18.5 <= newBMI < 25:
+    if 18.5 <= new_bmi < 25:
         statement = "Normal Weight"
 
-    if newBMI < 18.5:
+    if new_bmi < 18.5:
         statement = "Underweight"
 
     return statement
 
 
-def BMI():      
+def main_bmi():
 
     while True:
 
         feet = float(input('Enter feet of height: '))
-        inches = float (input('Enter inches of height: '))
+        inches = float(input('Enter inches of height: '))
         pounds = float(input('Enter weight in pounds: '))
 
-        resultant = tellBMI(feet, inches, pounds)
+        resultant = tell_bmi(feet, inches, pounds)
 
         print(resultant)
         print('\n')
 
-        returner = input ('Do you want to return to the main menu: (y) or (n)')
+        returner = input('Do you want to return to the main menu: (y) or (n)')
 
         if returner == 'y':
             return
 
 
 # functions for Distance Formula
-def subtractXValues(Xpoint1, Xpoint2):  # subtract X values
-    subXValue = (Xpoint2 - Xpoint1)
-    return subXValue
+def subtract_x_values(x_point1, x_point2):  # subtract X values
+    return x_point2 - x_point1
 
 
-def subtractYValues(Ypoint1, Ypoint2):  # subtract Y Values
-    subYValue = (Ypoint2 - Ypoint1)
-    return subYValue
+def subtract_y_values(y_point1, y_point2):  # subtract Y Values
+    return y_point2 - y_point1
 
 
-def squareXValue(Xvalue):  # square X Values
-    squaredXValue = (Xvalue * Xvalue)
-    return squaredXValue
+def square_x_value(x_value):  # square X Values
+    return x_value * x_value
 
 
-def squareYValue(Yvalue):  # square Y Values
-    squaredYValue = (Yvalue * Yvalue)
-    return squaredYValue
+def square_y_value(y_value):  # square Y Values
+    return y_value * y_value
 
 
-def addValue(Xsquared, Ysquared):  #add squared values together
-    totalValue = (Xsquared + Ysquared)
-    return totalValue
+def add_value(x_squared, y_squared):  # add squared values together
+    return x_squared + y_squared
 
 
-def getDistance(totalBeforeSquaring):  #get square root of distance
-    distance = math.sqrt(totalBeforeSquaring)
-    return distance
+def get_distance(total_before_squaring):  # get square root of distance
+    return math.sqrt(total_before_squaring)
 
 
-def distanceFormula(X1,Y1,X2,Y2):  # aggregate functions to perform distance formula
-    firstParthesis = subtractXValues(X1, X2)
-    secondParthesis = subtractYValues(Y1,Y2)
-    squareFirstParthesis = squareXValue(firstParthesis)
-    squareSecondParthesis = squareYValue(secondParthesis)
-    totalValues = addValue(squareFirstParthesis, squareSecondParthesis)
-    finalDistance = getDistance(totalValues)
+def distance_formula(x1_value, y1_value, x2_value, y2_value):  # aggregate functions to perform distance formula
+    first_parenthesis = subtract_x_values(x1_value, x2_value)
+    second_parenthesis = subtract_y_values(y1_value, y2_value)
+    square_first_parenthesis = square_x_value(first_parenthesis)
+    square_second_parenthesis = square_y_value(second_parenthesis)
+    total_values = add_value(square_first_parenthesis, square_second_parenthesis)
+    final_distance = get_distance(total_values)
 
-    return finalDistance
+    return final_distance
 
 
-def goTheDistance():
+def calculate_distance():
     while True:
-        X1 = int(input('Enter X coordinate of First point: '))
-        Y1 = int(input('Enter Y coordinate of First point: '))
-        X2 = int(input('Enter X coordinate of Second point: '))
-        Y2 = int(input('Enter Y coordinate of Second point: '))
-        resultant = distanceFormula(X1, Y1, X2, Y2)
+        x1_value = int(input('Enter X coordinate of First point: '))
+        y1_value = int(input('Enter Y coordinate of First point: '))
+        x2_value = int(input('Enter X coordinate of Second point: '))
+        y2_value = int(input('Enter Y coordinate of Second point: '))
+        resultant = distance_formula(x1_value, y1_value, x2_value, y2_value)
         print(resultant)
         print('\n')
-        returner = input ('Do you want to return to the main menu: (y) or (n)')
+        returner = input('Do you want to return to the main menu: (y) or (n)')
         if returner == 'y':
             return
 
 
 # Functions for Retirement
 
-def covertPercentage(amount, percentage):
-    newAmount = amount * percentage
-
-    return newAmount
+def convert_percentage(amount, percentage):
+    return amount * percentage
 
 
-def matchedSavings(amount):
-
-    savingsMatch = amount + amount
-
-    return savingsMatch
+def matched_savings(amount):
+    return amount + amount
 
 
-def increaseAge(age):
-
-    newAge = age + 1
-
-    return newAge
+def increase_age(age):
+    return age + 1
 
 
-def totalSavingsAmount(myPart, employerPart):
-
-    totalPart = myPart + employerPart
-
-    return totalPart
+def total_savings_amount(my_part, employer_part):
+    return my_part + employer_part
 
 
-def getRetirement (startAge, salary, percentage, goal):
+def get_retirement(start_age, salary, percentage, goal):
 
-    totalSavings = 0
+    total_savings = 0
 
-    finalAge = startAge
+    final_age = start_age
 
-    while totalSavings < goal:
-         myPercentage = covertPercentage(salary, percentage)
-         employerMatch = matchedSavings(myPercentage)
-         totalSavings = totalSavings + totalSavingsAmount(myPercentage, employerMatch)
-         finalAge = increaseAge(finalAge)
+    while total_savings < goal:
+        my_percentage = convert_percentage(salary, percentage)
+        employer_match = matched_savings(my_percentage)
+        total_savings = total_savings + total_savings_amount(my_percentage, employer_match)
+        final_age = increase_age(final_age)
 
-         if finalAge >= 100:
-            print ('Goal not met')
+        if final_age >= 100:
+            print('Goal not met')
             break
 
-    print('Goal met by age ' + str(finalAge) )
+    print('Goal met by age ' + str(final_age))
 
     return
 
 
-def retirementPlan():
+def retirement_plan():
     while True:
-        userAge = int (input('Enter your current age: '))
-        userAnnualSalary = float (input('Enter annual salary: $'))
-        userPercentage = float(input('Enter percentage saved (as a decimal percentage): '))
-        userGoal = float(input('Enter desired retirment savings goal: $'))
-        getRetirement(userAge,userAnnualSalary,userPercentage,userGoal)
+        user_age = int(input('Enter your current age: '))
+        user_annual_salary = float(input('Enter annual salary: $'))
+        user_percentage = float(input('Enter percentage saved (as a decimal percentage): '))
+        user_goal = float(input('Enter desired retirment savings goal: $'))
+        get_retirement(user_age, user_annual_salary, user_percentage, user_goal)
         print('\n')
         returner = input('Do you want to return to the main menu: (y) or (n)')
         if returner == 'y':
@@ -211,21 +190,15 @@ def retirementPlan():
 # functions for Email Verifier
 
 
-def parseOutAtSymbolInString(string):
-
-    parsed = string.split('@')
-
-    return parsed
+def parse_at_symbol(string):
+    return string.split('@')
 
 
-def parseOutDotSymbolInString(string):
-
-    parsed = string.split('.')
-
-    return parsed
+def parse_dot_symbol(string):
+    return string.split('.')
 
 
-def verfiyString(string):
+def verify_string(string):
 
     if len(string) <= 3:
         validation = "Valid Email"
@@ -236,13 +209,13 @@ def verfiyString(string):
     return validation
 
 
-def emailVerifier():
+def email_verifier():
     while True:
-        enteredEmail = str(input('Enter e-mail to be verified: '))
-        testem = parseOutAtSymbolInString(enteredEmail)
-        testem2 = parseOutDotSymbolInString(testem[1])
-        testem3 = verfiyString(testem2[1])
-        print(testem3)
+        entered_email = str(input('Enter e-mail to be verified: '))
+        test_email1 = parse_at_symbol(entered_email)
+        test_email2 = parse_dot_symbol(test_email1[1])
+        test_email3 = verify_string(test_email2[1])
+        print(test_email3)
         print('\n')
         returner = input('Do you want to return to the main menu: (y) or (n)')
         if returner == 'y':
@@ -254,16 +227,16 @@ def emailVerifier():
 
 class MyTest(unittest.TestCase):
     def test1(self):
-            self.assertEqual(convertFeetToInches(1), 12)
+            self.assertEqual(convert_feet_to_inches(1), 12)
 
     def test2(self):
-            self.assertEqual(convertFeetToInches(1.0), 12)
+            self.assertEqual(convert_feet_to_inches(1.0), 12)
 
     def test3(self):
-            self.assertEqual(convertFeetToInches(1), 12.0)
+            self.assertEqual(convert_feet_to_inches(1), 12.0)
 
     def test4(self):
-            self.assertEqual(convertFeetToInches(1.1), 12.0)
+            self.assertEqual(convert_feet_to_inches(1.1), 12.0)
 
 
 if __name__ == '__main__':
@@ -280,12 +253,12 @@ while True:
     choice = int(input('Choose the number of the option you want to perform: '))
 
     if choice == 1:
-            BMI()
+            main_bmi()
     elif choice == 2:
-            goTheDistance()
+            calculate_distance()
     elif choice == 3:
-            retirementPlan()
+            retirement_plan()
     elif choice == 4:
-            emailVerifier()
+            email_verifier()
     elif choice == 5:
             sys.exit()
