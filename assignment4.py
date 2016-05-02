@@ -232,16 +232,16 @@ def email_verifier():
 
 
 class MyTest(unittest.TestCase):
-    def test_at_symbol_1(self): #This should FAIL
-        self.assertTrue(verifyAtSymbol("test_test.com"))
+    def test_at_symbol_1(self): #This should PASS (UPDATED)
+        self.assertFalse(verifyAtSymbol("test_test.com"))
     def test_at_symbol_2(self): #This should PASS
         self.assertTrue(verifyAtSymbol("test@test.com"))
-    def test_dot_symbol_1(self): #This should FAIL
-        self.assertTrue(verifyDotSymbol("test_test_com"))
+    def test_dot_symbol_1(self): #This should PASS (UPDATED)
+        self.assertFalse(verifyDotSymbol("test_test_com"))
     def test_dot_symbol_2(self): #This should PASS
         self.assertTrue(verifyDotSymbol("test@test.com"))
-    def test_domain_1(self): #This should FAIL
-        self.assertTrue(verifyDomain("test@test.commm"))
+    def test_domain_1(self): #This should PASS (UPDATED)
+        self.assertFalse(verifyDomain("test@test.commm"))
     def test_domain_2(self): #This should PASS
         self.assertTrue(verifyDomain("test@test.com"))
     def test_domain_3(self): #This should PASS
