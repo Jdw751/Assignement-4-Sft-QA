@@ -2,30 +2,37 @@ import math
 import unittest
 import sys
 
-# funcitons to determin BMI
+
+# converts the feet to inches
 def convertFeetToInches(heightFeet):
     newHeightToInches = heightFeet * 12  # convert feet to inches
     return newHeightToInches
 
+
+# converts the inches to
 def completeHeightToInches(feet, inches):  # convert entire height to
     fullConvert = feet + inches
 
     return fullConvert
 
+
 def convertHeightToMetric(height):
-    metricHeight = (height * 0.025) # convert height to metric
+    metricHeight = (height * 0.025)  # convert height to metric
 
     return metricHeight
 
-def convertWeightToMetric(weight):# convert weight to metric
+
+def convertWeightToMetric(weight):  # convert weight to metric
     metricWeight = (weight * 0.45)
 
     return metricWeight
 
-def squareMetricHeight(height):#square height
+
+def squareMetricHeight(height):  #square height
     squaredResult = (height * height)
 
     return squaredResult
+
 
 def getBmiNumber(weight, heightSquared):
 
@@ -34,10 +41,8 @@ def getBmiNumber(weight, heightSquared):
     return finalBMI
 
 
-
-
-
-def tellBMI(heightInFeet, heightInInches, weight):#main function to give BMI result
+# main function to give BMI result
+def tellBMI(heightInFeet, heightInInches, weight):
 
     newHeightFeet = convertFeetToInches(heightInFeet)
     newHeight = completeHeightToInches(newHeightFeet, heightInInches)
@@ -49,20 +54,17 @@ def tellBMI(heightInFeet, heightInInches, weight):#main function to give BMI res
 
     newBMI = getBmiNumber(covertedWeight, convertedHeight)
 
+    if newBMI >= 30:
+        statement = "Obese"
 
+    if 25 <= newBMI < 30:
+        statement = "Overweight"
 
-    if newBMI > 30:
-            statement = "Obese"
-
-    if newBMI <= 29.9 and newBMI >= 25:
-            statement = "Overweight"
-
-    if newBMI <=24.9 and newBMI >=18.5:
-            statement = "Normal Weight"
+    if 18.5 <= newBMI < 25:
+        statement = "Normal Weight"
 
     if newBMI < 18.5:
-            statement = "Underweight"
-
+        statement = "Underweight"
 
     return statement
 
@@ -82,38 +84,42 @@ def BMI():
 
         returner = input ('Do you want to return to the main menu: (y) or (n)')
 
-        if (returner == 'y'):
+        if returner == 'y':
             return
 
 
-
-#functions for Distance Formula
-def  subtractXValues(Xpoint1, Xpoint2): #subtract X values
+# functions for Distance Formula
+def subtractXValues(Xpoint1, Xpoint2):  # subtract X values
     subXValue = (Xpoint2 - Xpoint1)
     return subXValue
 
-def subtractYValues(Ypoint1, Ypoint2): #subtract Y Values
+
+def subtractYValues(Ypoint1, Ypoint2):  # subtract Y Values
     subYValue = (Ypoint2 - Ypoint1)
     return subYValue
 
-def squareXValue(Xvalue): #square X Values
+
+def squareXValue(Xvalue):  # square X Values
     squaredXValue = (Xvalue * Xvalue)
     return squaredXValue
 
-def squareYValue(Yvalue): #sqaure Y Values
+
+def squareYValue(Yvalue):  # square Y Values
     squaredYValue = (Yvalue * Yvalue)
     return squaredYValue
 
-def addValue(Xsquared, Ysquared): #add squared values together
+
+def addValue(Xsquared, Ysquared):  #add squared values together
     totalValue = (Xsquared + Ysquared)
     return totalValue
 
-def getDistance(totalBeforeSquaring): #get square root of distance
+
+def getDistance(totalBeforeSquaring):  #get square root of distance
     distance = math.sqrt(totalBeforeSquaring)
     return distance
 
 
-def distanceFormula(X1,Y1,X2,Y2): # aggrate functions to perform distance formula
+def distanceFormula(X1,Y1,X2,Y2):  # aggregate functions to perform distance formula
     firstParthesis = subtractXValues(X1, X2)
     secondParthesis = subtractYValues(Y1,Y2)
     squareFirstParthesis = squareXValue(firstParthesis)
@@ -122,6 +128,7 @@ def distanceFormula(X1,Y1,X2,Y2): # aggrate functions to perform distance formul
     finalDistance = getDistance(totalValues)
 
     return finalDistance
+
 
 def goTheDistance():
     while True:
@@ -133,11 +140,11 @@ def goTheDistance():
         print(resultant)
         print('\n')
         returner = input ('Do you want to return to the main menu: (y) or (n)')
-        if (returner == 'y'):
+        if returner == 'y':
             return
 
 
-#Functions for Retirement
+# Functions for Retirement
 
 def covertPercentage(amount, percentage):
     newAmount = amount * percentage
@@ -151,11 +158,13 @@ def matchedSavings(amount):
 
     return savingsMatch
 
+
 def increaseAge(age):
 
     newAge = age + 1
 
     return newAge
+
 
 def totalSavingsAmount(myPart, employerPart):
 
@@ -164,34 +173,26 @@ def totalSavingsAmount(myPart, employerPart):
     return totalPart
 
 
-
-def getRetirement (startAge,salary,percentage,goal):
-
+def getRetirement (startAge, salary, percentage, goal):
 
     totalSavings = 0
 
     finalAge = startAge
 
-
-    while (totalSavings < goal) :
-
+    while totalSavings < goal:
          myPercentage = covertPercentage(salary, percentage)
          employerMatch = matchedSavings(myPercentage)
          totalSavings = totalSavings + totalSavingsAmount(myPercentage, employerMatch)
          finalAge = increaseAge(finalAge)
 
-         if (finalAge >= 100):
+         if finalAge >= 100:
             print ('Goal not met')
             break
 
-
-
-
-
-    print ('Goal met by age ' + str(finalAge) )
-
+    print('Goal met by age ' + str(finalAge) )
 
     return
+
 
 def retirementPlan():
     while True:
@@ -201,14 +202,14 @@ def retirementPlan():
         userGoal = float(input('Enter desired retirment savings goal: $'))
         getRetirement(userAge,userAnnualSalary,userPercentage,userGoal)
         print('\n')
-        returner = input ('Do you want to return to the main menu: (y) or (n)')
-        if (returner == 'y'):
+        returner = input('Do you want to return to the main menu: (y) or (n)')
+        if returner == 'y':
             return
 
 
-
 # def emailVerifier():
-#functions for Email Verifier
+# functions for Email Verifier
+
 
 def parseOutAtSymbolInString(string):
 
@@ -216,15 +217,17 @@ def parseOutAtSymbolInString(string):
 
     return parsed
 
+
 def parseOutDotSymbolInString(string):
 
     parsed = string.split('.')
 
     return parsed
 
+
 def verfiyString(string):
 
-    if ( len(string) <= 3):
+    if len(string) <= 3:
         validation = "Valid Email"
 
     else:
@@ -232,8 +235,8 @@ def verfiyString(string):
 
     return validation
 
-def emailVerifier():
 
+def emailVerifier():
     while True:
         enteredEmail = str(input('Enter e-mail to be verified: '))
         testem = parseOutAtSymbolInString(enteredEmail)
@@ -241,53 +244,48 @@ def emailVerifier():
         testem3 = verfiyString(testem2[1])
         print(testem3)
         print('\n')
-        returner = input ('Do you want to return to the main menu: (y) or (n)')
-        if (returner == 'y'):
+        returner = input('Do you want to return to the main menu: (y) or (n)')
+        if returner == 'y':
             return
 
 
+# running test
 
-#running test
+
 class MyTest(unittest.TestCase):
     def test1(self):
             self.assertEqual(convertFeetToInches(1), 12)
+
     def test2(self):
             self.assertEqual(convertFeetToInches(1.0), 12)
+
     def test3(self):
             self.assertEqual(convertFeetToInches(1), 12.0)
+
     def test4(self):
             self.assertEqual(convertFeetToInches(1.1), 12.0)
-    def test5(self):
-            self.assertAlmostEqual()
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     unittest.main(exit=False)
 
 
 while True:
-
-
-
-    print ('Calculate BMI (1)\n')
-    print ('Calculate Distance Formula (2)\n')
-    print ('Calculate Retirement (3)\n')
-    print ('Verify Emails (4)\n')
-    print ('Exit (5)\n')
+    print('Calculate BMI (1)\n')
+    print('Calculate Distance Formula (2)\n')
+    print('Calculate Retirement (3)\n')
+    print('Verify Emails (4)\n')
+    print('Exit (5)\n')
 
     choice = int(input('Choose the number of the option you want to perform: '))
 
-    if (choice == 1):
+    if choice == 1:
             BMI()
-    elif (choice == 2):
+    elif choice == 2:
             goTheDistance()
-    elif (choice == 3):
+    elif choice == 3:
             retirementPlan()
-    elif (choice == 4):
+    elif choice == 4:
             emailVerifier()
-    elif (choice == 5):
+    elif choice == 5:
             sys.exit()
-
-
-
-
