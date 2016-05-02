@@ -185,58 +185,64 @@ def retirement_plan():
         if returner == 'y':
             return
 
+# ============== EMAIL VERIFICATION SECTION ============= #
 
-# def emailVerifier():
-# functions for Email Verifier
+# Check to make sure '@' symbol is present at least once but no more than once
+def verifyAtSymbol(string):
+    count = 0
+    stringLength = len(string) - 1
+    while (stringLength >= 0):
+        if (string[stringLength] == '@'):
+            count += 1
+        stringLength -= 1
+    return count == 1
 
-
-def parse_at_symbol(string):
-    return string.split('@')
-
-
-def parse_dot_symbol(string):
-    return string.split('.')
-
-
-def verify_string(string):
-
-    if len(string) <= 3:
-        validation = "Valid Email"
-
-    else:
-        validation = "Invalid Email"
-
-    return validation
-
+# Check to make sure '.' symbol is present at least once
+def verifyDotSymbol(string):
+    count = 0
+    stringLength = len(string) - 1
+    while (stringLength >= 0):
+        if (string[stringLength] == '.'):
+            count += 1
+        stringLength -= 1
+    return count >= 1
+     
+# Check to make sure domain is equal to or less than 3 characters
+def verifyDomain(string):
+    domain = string.split('.')
+    return len(domain[1]) <= 3
 
 def email_verifier():
-    while True:
-        entered_email = str(input('Enter e-mail to be verified: '))
-        test_email1 = parse_at_symbol(entered_email)
-        test_email2 = parse_dot_symbol(test_email1[1])
-        test_email3 = verify_string(test_email2[1])
-        print(test_email3)
-        print('\n')
-        returner = input('Do you want to return to the main menu: (y) or (n)')
-        if returner == 'y':
-            return
 
+    while True:
+        enteredEmail = str(input('Enter e-mail to be verified: '))
+        
+        if verifyAtSymbol(enteredEmail) and verifyDotSymbol(enteredEmail) and verifyDomain(enteredEmail):
+            print("Valid Email\n")
+        else:
+            print("Invalid Email\n")
+            
+        print("Would you like to verify another email address?")
+        emailMenu = input ("Enter 'y' for yes, otherwise enter anything else to return to the main menu: ")
+        
+        if (emailMenu != 'y'):
+            break
 
 # running test
 
 
 class MyTest(unittest.TestCase):
     def test1(self):
-            self.assertEqual(convert_feet_to_inches(1), 12)
+        self.assertEqual(convert_feet_to_inches(1), 12)
 
     def test2(self):
-            self.assertEqual(convert_feet_to_inches(1.0), 12)
+        self.assertEqual(convert_feet_to_inches(1.0), 12)
 
     def test3(self):
-            self.assertEqual(convert_feet_to_inches(1), 12.0)
+        self.assertEqual(convert_feet_to_inches(1), 12.0)
 
     def test4(self):
-            self.assertEqual(convert_feet_to_inches(1.1), 12.0)
+        self.assertEqual(convert_feet_to_inches(1.1), 12.0)
 
 
 if __name__ == '__main__':
@@ -244,21 +250,21 @@ if __name__ == '__main__':
 
 
 while True:
-    print('Calculate BMI (1)\n')
-    print('Calculate Distance Formula (2)\n')
-    print('Calculate Retirement (3)\n')
-    print('Verify Emails (4)\n')
-    print('Exit (5)\n')
+    print('1. Calculate BMI')
+    print('2. Calculate Distance Formula')
+    print('3. Calculate Retirement')
+    print('4. Verify Emails')
+    print('Enter anything else to exit.\n')
 
-    choice = int(input('Choose the number of the option you want to perform: '))
+    choice = (input('Please choose an option: '))
 
-    if choice == 1:
-            main_bmi()
-    elif choice == 2:
-            calculate_distance()
-    elif choice == 3:
-            retirement_plan()
-    elif choice == 4:
-            email_verifier()
-    elif choice == 5:
-            sys.exit()
+    if choice == '1':
+        main_bmi()
+    elif choice == '2':
+        calculate_distance()
+    elif choice == '3':
+        retirement_plan()
+    elif choice == '4':
+        email_verifier()
+    else:
+        sys.exit()
